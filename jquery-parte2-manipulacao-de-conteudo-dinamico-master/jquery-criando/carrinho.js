@@ -27,7 +27,6 @@ var undo = function () {
 	var trs = $('tr:hidden');
 	trs.addClass('recuperado').show();
 
-
 };
 
 var aposInicializado = function() {
