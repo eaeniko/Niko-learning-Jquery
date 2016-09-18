@@ -86,15 +86,7 @@
 	
 	<script src="jquery-2.0.3.min.js"></script>
 	<script>
-	var removeItem = function(event) {
-		var self = $(this);
-		self.closest('tr').remove();
-		event.preventDefault();
-		var atual = parseInt($('#quantidade-item').text());
-		var novaQuantidade = atual - 1;
-		$('#quantidade-item').text(novaQuantidade);
-	};
-	var aposInicializado = function() {
+	var atualizaDados = function () {
 		var total = 0;
 		var itens = $('.item-total');
 		for (var i = 0; i < itens.length; i++) {
@@ -105,8 +97,20 @@
 		console.log("Valor total: " + total);
 		$('#valor-total').text(total);
 		$('#quantidade-item').text(itens.length);
+	};
+
+	var removeItem = function(event) {
+		event.preventDefault();
+		var self = $(this);
+		self.closest('tr').remove();
+
+		atualizaDados();
+	};
+	var aposInicializado = function() {
+		atualizaDados();
 		$('.remove-item').click(removeItem);
 	};
+	
 	$(aposInicializado); 
 	</script>
 
