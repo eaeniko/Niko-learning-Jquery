@@ -1,17 +1,19 @@
 var atualizaDados = function () {
-
-	var total = 0;
-	var itens = $('.item-total:visible');
-	for (var i = 0; i < itens.length; i++) {
-		var item = $(itens[i]);
-		var valor = parseFloat(item.text());
-		total = total + valor;
-	}
+	var carrinhos = $('.carrinho');
+	carrinhos.each(function() {
+		var carrinho = $(this);
+		var itens = carrinho.find('.item-total:visible');
+		var total = 0;
+		for (var i = 0; i < itens.length; i++) {
+			var item = $(itens[i]);
+			var valor = parseFloat(item.text());
+			total = total + valor;
+		}
 	console.log("Valor total: " + total);
-	$('#valor-total').text(total);
-	$('#quantidade-item').text(itens.length);
+	carrinho.find('.valor-total').text(total);
+	carrinho.find('.quantidade-item').text(itens.length);
+	});
 };
-
 var removeItem = function(event) {
 
 	event.preventDefault();
@@ -20,19 +22,19 @@ var removeItem = function(event) {
 
 	atualizaDados();
 };
+var undo = function () {
+	var carrinho = $(this).closest('.carrinho'); 
+	carrinho.find("tr:visible").removeClass('recuperado');
 
-var undo = function () { 
-	$("tr:visible").removeClass('recuperado');
-
-	var trs = $('tr:hidden');
+	var trs = carrinho.find('tr:hidden');
 	trs.addClass('recuperado').show();
+	atualizaDados();
 
 };
-
 var aposInicializado = function() {
 
 	atualizaDados();
-	$('#undo').click(undo);
+	$('.undo').click(undo);
 	$('.remove-item').click(removeItem);
 	};
 
