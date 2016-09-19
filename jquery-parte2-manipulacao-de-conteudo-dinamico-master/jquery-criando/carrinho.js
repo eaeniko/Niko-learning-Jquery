@@ -46,10 +46,17 @@ var undo = function () {
 
 };
 var daDestaque = function() {
+	$(this).find('.remove-item').fadeIn();
 	$(this).addClass('hovering');
 };
 var tiraDestaque = function() {
+	$(this).find('.remove-item').fadeOut();
 	$(this).removeClass('hovering');
+};
+var alternaPropagandas = function(event) {
+	event.preventDefault();
+	$('.propaganda').fadeToggle();
+	$('.alterna-propaganda').toggle();
 };
 var aposInicializado = function() {
 	atualizaDados();
@@ -65,8 +72,7 @@ var aposInicializado = function() {
 	$('tr').on('mouseleave', tiraDestaque); */
 
 	$('tbody tr').hover(daDestaque, tiraDestaque);
-
-
+	$('.alterna-propaganda').click(alternaPropagandas);
 };
 
 $(aposInicializado); 
