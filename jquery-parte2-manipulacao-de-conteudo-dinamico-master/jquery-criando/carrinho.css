@@ -39,7 +39,9 @@ td {
 .recuperado {
 	background: #FE0;
 }
-
+.hovering {
+	background: #CCC;
+}
 
 .propaganda td {
 	background: #9F0;
